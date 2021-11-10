@@ -6,7 +6,8 @@ from random import seed
 from random import randint
 
 def audioFunction(frequency_input, seconds_input):
-    frequency = frequency_input  # Our played note will be 440 Hz
+
+    frequency = frequency_input  # Our played note will inputed frequency
     fs = 44100  # 44100 samples per second
     seconds = seconds_input  # Note duration of 3 seconds
 
@@ -17,16 +18,10 @@ def audioFunction(frequency_input, seconds_input):
     note1 = np.sin(frequency * t * 2 * np.pi)
 
     # Generate a second sine wave for harmonics1
-    note2 = np.sin(frequency*1 * t * 2 * np.pi)
-
     note3 = np.sin(frequency*3 * t * 2 * np.pi)
-
-    note4 = np.sin(frequency*5 * t * 2 * np.pi)
 
 
     note5 = note1 + note3
-
-    # Generate a square wave
 
     # Ensure that highest value is in 16-bit range
     audio = note5 * (2**15 - 1) / np.max(np.abs(note5))
